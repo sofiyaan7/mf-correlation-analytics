@@ -120,9 +120,12 @@ border-radius:999px;padding:4px 10px;font-size:11.5px;font-weight:500;white-spac
 .switch-hint{{color:var(--quiet);font-size:11px;text-align:right;margin-top:4px;}}
 
 /* ---------- streamlit widgets ---------- */
-/* The innermost wrapper that holds a kicker: an ancestor wrapper also "has" one,
-   which is what previously drew a border around the entire page. */
-[data-testid="stVerticalBlockBorderWrapper"]:has(.kicker):not(:has([data-testid="stVerticalBlockBorderWrapper"] .kicker)){{
+/* The innermost container holding a kicker. An ancestor also "has" one, which
+   would otherwise draw a border around the whole page. Streamlit renamed this
+   container from stVerticalBlockBorderWrapper to stLayoutWrapper in 1.4x, so
+   both are matched and the app styles correctly on either DOM. */
+[data-testid="stVerticalBlockBorderWrapper"]:has(.kicker):not(:has([data-testid="stVerticalBlockBorderWrapper"] .kicker)),
+[data-testid="stLayoutWrapper"]:has(.kicker):not(:has([data-testid="stLayoutWrapper"] .kicker)){{
 background:var(--surface);border:1px solid var(--line)!important;border-radius:12px;
 padding:8px 6px;box-shadow:0 1px 3px var(--shadow);}}
 [data-testid="stWidgetLabel"] p,.stTextInput label,.stSelectbox label{{color:var(--muted)!important;

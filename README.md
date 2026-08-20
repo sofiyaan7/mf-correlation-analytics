@@ -82,9 +82,19 @@ system's light/dark preference — without it, Streamlit renders its own widgets
 desktop while the stylesheet paints light panels. Both palettes live in `src/theme.py` and are
 verified against WCAG AA for body text; the switch sits at the top right.
 
-`streamlit` is pinned in `requirements.txt` because that stylesheet targets `data-testid`
-attributes in Streamlit's DOM, which are internal and change between releases. Upgrading
-Streamlit means re-checking the theme in a browser.
+`streamlit` is pinned to 1.50.0 in `requirements.txt` because that stylesheet restyles
+Streamlit's own widgets through `data-testid` and BaseWeb selectors, which are internal and move
+between releases. Verified in a real browser on 1.39 and 1.50, in both palettes:
+
+| Version | Installs on current Python | Theme holds |
+| --- | --- | --- |
+| 1.39.0 | **No** — caps `pillow<11`, which has no wheel and fails to build from source | yes |
+| 1.50.0 | yes (pillow 11.3, packaging 25) | yes |
+| 1.53+ | yes | **no** — BaseWeb is gone, so selects and inputs lose their theming |
+
+The bordered container was renamed from `stVerticalBlockBorderWrapper` to `stLayoutWrapper` in
+1.4x; `src/theme.py` matches both, so the app also renders correctly on 1.39. Upgrading past
+1.50 means re-checking the theme in a browser first.
 
 ## Deploy
 

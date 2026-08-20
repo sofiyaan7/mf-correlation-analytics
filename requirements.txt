@@ -1,7 +1,13 @@
-# streamlit is pinned: the stylesheet in src/theme.py targets data-testid
-# attributes in Streamlit's DOM, which are internal and shift between releases.
-# The theme was verified against 1.39.0 in a real browser.
-streamlit==1.39.0
+# streamlit is pinned deliberately. The stylesheet in src/theme.py restyles
+# Streamlit's own widgets through data-testid and BaseWeb selectors, which are
+# internal and change between releases:
+#   * 1.39 renamed nothing but caps pillow<11, which has no wheel on current
+#     Python and fails to build from source -- do not use it on a cloud runner.
+#   * 1.4x renamed the bordered container to stLayoutWrapper (handled).
+#   * 1.53+ drops BaseWeb, so selects and inputs lose their theming entirely.
+# 1.50.0 installs cleanly (pillow 11.3, packaging 25) and was verified in a
+# real browser in both palettes. Upgrading means re-checking the theme.
+streamlit==1.50.0
 pandas>=2.0,<3
 numpy>=1.26,<3
 scipy>=1.11
