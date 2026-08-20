@@ -1,0 +1,8 @@
+# streamlit is pinned: the stylesheet in src/theme.py targets data-testid
+# attributes in Streamlit's DOM, which are internal and shift between releases.
+# The theme was verified against 1.39.0 in a real browser.
+streamlit==1.39.0
+pandas>=2.0,<3
+numpy>=1.26,<3
+scipy>=1.11
+openpyxl>=3.1

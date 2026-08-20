@@ -1,0 +1,23 @@
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Streamlit secrets -- never commit credentials
+.streamlit/secrets.toml
+
+# LibreOffice / Excel lock and temp files
+.~lock.*#
+~$*
+*.tmp
+
+# OS
+.DS_Store
+Thumbs.db
+.vscode/

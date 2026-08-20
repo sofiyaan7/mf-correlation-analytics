@@ -1,0 +1,14 @@
+# Pinned so the app never inherits the OS light/dark preference. Without this,
+# Streamlit renders its native chrome dark on a dark desktop while the stylesheet
+# paints light panels, which is why the page looked broken. Appearance is chosen
+# in the app itself; this block only fixes the foundation the stylesheet builds on.
+[theme]
+base = "light"
+primaryColor = "#2f4bc4"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f2f5fa"
+textColor = "#10141b"
+font = "sans serif"
+
+[browser]
+gatherUsageStats = false
